@@ -1,6 +1,8 @@
 package com.dumcoder;
 
 import com.dumcoder.core.HelloWorld;
+import com.dumcoder.dao.Customer;
+import com.dumcoder.service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -20,7 +22,14 @@ public class App
         log.error("Starting application");
         log.info("Starting application");
         ApplicationContext context = new ClassPathXmlApplicationContext("SpringContext.xml");
-        HelloWorld helloBean = (HelloWorld) context.getBean("helloBean");
-        helloBean.printHello();
+//        HelloWorld helloBean = (HelloWorld) context.getBean("helloBean");
+//        helloBean.printHello();
+        CustomerService customerService = (CustomerService) context.getBean("customerService");
+        Customer customer = new Customer();
+        customer.setFirstname("wasiq");
+        customer.setLastname("hasan");
+        customer.setPhone("123-123-1523");
+        customer.setEmail("a@b.com");
+        customerService.addCustomer(customer);
     }
 }
